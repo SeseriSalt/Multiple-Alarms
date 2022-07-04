@@ -42,19 +42,11 @@ struct AlarmListView: View {
                 List {
                     ForEach(userData.alarmTasks) { task in
                         ListRow(firstTime: task.firstTime, count: task.count, interval: task.interval)
-                            .swipeActions(edge: .trailing) {
-                                                    Button(role: .destructive) {
-                                                        print("delete action.")
-                                                
-                                                        
-                                                    } label: {
-                                                        Image(systemName: "trash.fill")
-                                                    }
-                            }
+                    }
+                    .onDelete { (offsets) in
+                        userData.alarmTasks.remove(atOffsets: offsets)
                     }
                 
-                    Image(systemName: "plus")
-                        .foregroundColor(.blue)
                 }
                 .font(.title)
             }
@@ -77,10 +69,6 @@ struct AlarmListView: View {
             })
         }
     }
-    
-   func destroyAlarmTask(offsets: IndexSet) {
-        userData.alarmTasks.remove(atOffsets: offsets)
-    }
 }
 
 
@@ -101,6 +89,7 @@ struct SettignView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(UserData())
     }
 }
 

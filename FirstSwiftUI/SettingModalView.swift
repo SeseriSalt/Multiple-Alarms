@@ -67,10 +67,7 @@ struct SettingModalView: View {
         
                         .padding()
                     Button(action: {
-//                        TimesArr.append(times)
-//                        IntervalArr.append(interval)
-//                        DateArr.append("\(selectionDate)")
-//                        print(DateArr)
+                        createAlarmTask()
                         self.presentation.wrappedValue.dismiss()
                         
                     },label: {
@@ -109,5 +106,6 @@ struct SettingModalView: View {
 struct SettingModalView_Previews: PreviewProvider {
     static var previews: some View {
         SettingModalView()
+            .environmentObject(UserData())
     }
 }

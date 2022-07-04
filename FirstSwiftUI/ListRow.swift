@@ -29,5 +29,6 @@ struct ListRow: View {
 struct ListRow_Previews: PreviewProvider {
     static var previews: some View {
         ListRow(firstTime: "13:00", count: 1, interval: 1)
+            .environmentObject(UserData())
     }
 }
