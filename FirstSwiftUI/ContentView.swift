@@ -7,9 +7,12 @@
 
 import SwiftUI
 
-var DateArr:[String] = []
-var TimesArr:[Int] = []
-var IntervalArr:[Int] = []
+//var DateArr:[String] = []
+//var TimesArr:[Int] = []
+//var IntervalArr:[Int] = []
+
+
+
 struct ContentView: View {
     var body: some View {
         TabView {
@@ -18,6 +21,7 @@ struct ContentView: View {
                     Image(systemName: "alarm")
                     Text("アラームリスト")
                 }
+//                .environmentObject(UserDeta())
             SettignView()
                 .tabItem {
                     Image(systemName: "slider.horizontal.3")
@@ -31,26 +35,26 @@ struct ContentView: View {
 struct AlarmListView: View {
     @State var OnOff: Bool = true
     @State private var showingModal = false
-    let fruits = ["りんご", "みかん", "スイカ", "レモン"]
+    @EnvironmentObject var userData: UserData
     var body: some View {
         NavigationView {
             VStack{
                 List {
-                    HStack {
-                        Toggle("13:00から5分おきに３回", isOn: $OnOff)
-                            .padding(.leading, 10)
-                            .font(.title2)
-                            
+                    ForEach(userData.alarmTasks) { task in
+                        ListRow(firstTime: task.firstTime, count: task.count, interval: task.interval)
+                            .swipeActions(edge: .trailing) {
+                                                    Button(role: .destructive) {
+                                                        print("delete action.")
+                                                
+                                                        
+                                                    } label: {
+                                                        Image(systemName: "trash.fill")
+                                                    }
+                            }
                     }
-                    HStack {
-                        Toggle("時間", isOn: $OnOff)
-                    }
-                    HStack {
-                        Toggle("時間", isOn: $OnOff)
-                    }
-                    ForEach(fruits, id: \.self) { fruit in
-                                    Text(fruit)
-                    }
+                
+                    Image(systemName: "plus")
+                        .foregroundColor(.blue)
                 }
                 .font(.title)
             }
@@ -68,13 +72,15 @@ struct AlarmListView: View {
                     Image(systemName: "plus")
                     Text("追加")
                 }.sheet(isPresented: $showingModal) {
-                    ModalView()
+                    SettingModalView()
                 }
             })
         }
     }
     
-    
+   func destroyAlarmTask(offsets: IndexSet) {
+        userData.alarmTasks.remove(atOffsets: offsets)
+    }
 }
 
 
@@ -91,95 +97,6 @@ struct SettignView: View {
 }
 
 
-struct ModalView: View {
-    @Environment(\.presentationMode) var presentation
-    @State private var selectionDate = Date()
-    @State var times = 1
-    @State var interval = 5
-    @FocusState var focus:Bool
-    var body: some View {
-        NavigationView{
-            VStack{
-                Form {
-                    DatePicker("はじめの時刻", selection: $selectionDate,
-                               displayedComponents: .hourAndMinute)
-                    .padding()
-//                   wheelさせたい
-//                                .datePickerStyle(WheelPickerStyle())
-                
-                    HStack{
-                        Text("スヌーズ回数")
-                        TextField("", value: $times, formatter: NumberFormatter())
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
-                            .padding(.leading, 80)
-                            .focused(self.$focus)
-                                            .toolbar{
-                                                ToolbarItem(placement: .keyboard){
-                                                    HStack{
-                                                        Spacer()
-                                                        Button("Close"){
-                                                            self.focus = false
-                                                        }
-                                                    }
-                                                }
-                                            }
-                        Text("回")
-                    }
-                    
-                        .padding()
-                    HStack{
-                        Text("スヌーズ間隔")
-                        TextField("", value: $interval, formatter: NumberFormatter())
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
-                            .padding(.leading, 80)
-                            .focused(self.$focus)
-                                            .toolbar{
-                                                ToolbarItem(placement: .keyboard){
-                                                    HStack{
-                                                        Spacer()
-                                                        Button("Close"){
-                                                            self.focus = false
-                                                        }
-                                                    }
-                                                }
-                                            }
-                        Text("分")
-                    }
-        
-                        .padding()
-                    Button(action: {
-                        TimesArr.append(times)
-                        IntervalArr.append(interval)
-                        DateArr.append("\(selectionDate)")
-                        print(DateArr)
-                        self.presentation.wrappedValue.dismiss()
-                        
-                    },label: {
-                        Text("追加！")
-                            .frame(maxWidth: .infinity, alignment: .center)
-                        
-                    })
-
-                
-//                    .navigationTitle("アラームを追加")
-                    .navigationBarItems(leading: Button(action: {
-                        self.presentation.wrappedValue.dismiss()
-                        
-                    },label: {
-                        Text("キャンセル")
-                        
-                    }))
-                }
-            }
-        }
-        
-    }
-}
-
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -188,8 +105,3 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
-struct ModalView_Previews: PreviewProvider {
-    static var previews: some View {
-        ModalView()
-    }
-}

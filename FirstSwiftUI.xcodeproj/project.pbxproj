@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B8D54F92872F6E50017C692 /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8D54F82872F6E50017C692 /* ListRow.swift */; };
+		5B8D54FB2872F96A0017C692 /* SettingModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8D54FA2872F96A0017C692 /* SettingModalView.swift */; };
+		5B8D54FD287301B00017C692 /* UsesrData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8D54FC287301B00017C692 /* UsesrData.swift */; };
+		5B8D54FF287302790017C692 /* UserAlarmTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8D54FE287302790017C692 /* UserAlarmTask.swift */; };
 		5BC01535286FF65200447591 /* FirstSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC01534286FF65200447591 /* FirstSwiftUIApp.swift */; };
 		5BC01537286FF65200447591 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC01536286FF65200447591 /* ContentView.swift */; };
 		5BC01539286FF66100447591 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BC01538286FF66100447591 /* Assets.xcassets */; };
@@ -14,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B8D54F82872F6E50017C692 /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
+		5B8D54FA2872F96A0017C692 /* SettingModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModalView.swift; sourceTree = "<group>"; };
+		5B8D54FC287301B00017C692 /* UsesrData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsesrData.swift; sourceTree = "<group>"; };
+		5B8D54FE287302790017C692 /* UserAlarmTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAlarmTask.swift; sourceTree = "<group>"; };
 		5BC01531286FF65200447591 /* FirstSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirstSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BC01534286FF65200447591 /* FirstSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSwiftUIApp.swift; sourceTree = "<group>"; };
 		5BC01536286FF65200447591 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +61,10 @@
 			children = (
 				5BC01534286FF65200447591 /* FirstSwiftUIApp.swift */,
 				5BC01536286FF65200447591 /* ContentView.swift */,
+				5B8D54FE287302790017C692 /* UserAlarmTask.swift */,
+				5B8D54FC287301B00017C692 /* UsesrData.swift */,
+				5B8D54F82872F6E50017C692 /* ListRow.swift */,
+				5B8D54FA2872F96A0017C692 /* SettingModalView.swift */,
 				5BC01538286FF66100447591 /* Assets.xcassets */,
 				5BC0153A286FF66100447591 /* Preview Content */,
 			);
@@ -139,6 +151,10 @@
 			files = (
 				5BC01537286FF65200447591 /* ContentView.swift in Sources */,
 				5BC01535286FF65200447591 /* FirstSwiftUIApp.swift in Sources */,
+				5B8D54F92872F6E50017C692 /* ListRow.swift in Sources */,
+				5B8D54FF287302790017C692 /* UserAlarmTask.swift in Sources */,
+				5B8D54FD287301B00017C692 /* UsesrData.swift in Sources */,
+				5B8D54FB2872F96A0017C692 /* SettingModalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
