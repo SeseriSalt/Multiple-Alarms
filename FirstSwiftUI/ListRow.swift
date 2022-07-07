@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ListRow: View {
     @State var isSetAlarm: Bool = true
+    @Environment(\.colorScheme) var colorScheme
     var firstTime: String
     var count: Int
     var interval: Int
@@ -18,7 +19,7 @@ struct ListRow: View {
                 Text("\(firstTime)から\(interval)分おきに\(count)回")
                     .font(.title2)
 //                    .fontWeight(isSetAlarm ? .bold : .light)
-                    .foregroundColor(isSetAlarm ? .black : .gray)
+                    .foregroundColor(colorScheme == .dark ? (isSetAlarm ? .white : .gray) : (isSetAlarm ? .black : .gray))
                     .padding(.leading, 10)
             }
 
